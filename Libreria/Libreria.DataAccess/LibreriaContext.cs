@@ -7,10 +7,10 @@ namespace Libreria.DataAccess
     public class LibreriaContext: DbContext
     {
         public LibreriaContext(DbContextOptions<LibreriaContext> options): base(options) { }
-        public DbSet<Persona> Personas { get; set; }
-        public DbSet<Libro> Libros { get; set; }
-        public DbSet<Libreriaa> Librerias { get; set; }
-        public DbSet<LibroAutore> LibroAutores { get; set; }
-        public DbSet<Autore> Autores { get; set; }
+        public DbSet<Persona> Persona { get; set; }
+        public DbSet<Libro> Libro { get; set; }
+        public DbSet<Libreriaa> Libreriaa { get; set; }
+        public DbSet<LibroAutore> LibroAutore { get; set; }
+        public DbSet<Autore> Autore { get; set; }
     }
 }

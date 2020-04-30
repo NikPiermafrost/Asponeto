@@ -21,7 +21,7 @@ namespace Libreria.DataAccess.Services
         {
             try
             {
-                var result = await _libreriaContext.Libros
+                var result = await _libreriaContext.Libro
                     .Include(x => x.Libreria)
                     .Include(x => x.LibroAutores)
                     .ThenInclude(x => x.Autore).ToListAsync();
