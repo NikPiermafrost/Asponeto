@@ -1,0 +1,8 @@
+﻿using System;
+
+namespace Libreria.Core
+{
+    public class Class1
+    {
+    }
+}
