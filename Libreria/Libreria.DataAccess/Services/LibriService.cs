@@ -17,7 +17,7 @@ namespace Libreria.DataAccess.Services
             _libreriaContext = libreriaContext;
         }
 
-        public async Task<List<Libro>> GetLibro()
+        public async Task<List<Libro>> GetLibri()
         {
             try
             {

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Libreria.DataAccess.Services;
+using Libreria.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +13,25 @@ namespace Libreria.Controllers
     [ApiController]
     public class LibroController : ControllerBase
     {
+        private readonly ILibriService _libriService;
+        public LibroController(ILibriService libriService)
+        {
+            _libriService = libriService;
+        }
         // GET: api/Libro
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var toMap = await _libriService.GetLibri();
+                var res = AnswerLibro.MappaPerLista(toMap);
+                return Ok(res);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, null);
+            }
         }
 
         // GET: api/Libro/5
