@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Libreria.Core\Libreria.Core.csproj" />
     <ProjectReference Include="..\Libreria.DataAccess\Libreria.DataAccess.csproj" />
     <ProjectReference Include="..\Libreria.Dto\Libreria.Dto.csproj" />
