@@ -4,5 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Libreria.Core\Libreria.Core.csproj" />
+    <ProjectReference Include="..\Libreria.DataAccess\Libreria.DataAccess.csproj" />
+    <ProjectReference Include="..\Libreria.Dto\Libreria.Dto.csproj" />
+  </ItemGroup>
+
 
 </Project>
