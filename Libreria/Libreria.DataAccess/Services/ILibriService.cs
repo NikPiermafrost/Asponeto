@@ -8,5 +8,9 @@ namespace Libreria.DataAccess.Services
     {
         Task<List<Libro>> GetLibri();
         Task<Libro> GetLibro(int Id);
+        Task<Libro> GetLibroByTitolo(string titolo);
+        Task<Libreriaa> CheckLibreria(string Nome, string Luogo);
+        Task<Autore> CheckAutore(string Nome, string Congome);
+        Task<bool> AddLibroToDb(Libro libro);
     }
 }

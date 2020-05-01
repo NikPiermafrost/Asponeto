@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Libreria.Core;
 using Libreria.DataAccess;
 using Libreria.DataAccess.Services;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,7 @@ namespace Libreria
             var ConnString = Configuration.GetConnectionString("DbString");
             services.AddDbContext<LibreriaContext>(x => x.UseSqlServer(ConnString));
             services.AddScoped<ILibriService, LibriService>();
+            services.AddScoped<ILibroCore, LibroCore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
