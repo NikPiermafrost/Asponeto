@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Libreria.Core;
 using Libreria.DataAccess.Services;
 using Libreria.Dto;
 using Microsoft.AspNetCore.Http;
@@ -14,9 +15,11 @@ namespace Libreria.Controllers
     public class LibroController : ControllerBase
     {
         private readonly ILibriService _libriService;
-        public LibroController(ILibriService libriService)
+        private readonly ILibroCore _libroCore;
+        public LibroController(ILibriService libriService, ILibroCore libroCore)
         {
             _libriService = libriService;
+            _libroCore = libroCore;
         }
         // GET: api/Libro
         [HttpGet]
@@ -58,8 +61,24 @@ namespace Libreria.Controllers
 
         // POST: api/Libro
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] RequestLibro value)
         {
+            try
+            {
+                var res = await _libroCore.PostLibro(value);
+                if (res != 0)
+                {
+                    return Ok(res);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, null);
+            }
         }
 
         // PUT: api/Libro/5
