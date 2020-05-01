@@ -21,30 +21,35 @@ namespace Libreria.Dto
             var res = new List<AnswerLibro>();
             foreach (var item in libri)
             {
-                var tmp = new AnswerLibro();
-                tmp.LibroId = item.LibroId;
-                tmp.Titolo = item.Titolo;
-                tmp.AnnoPub = item.AnnoPub;
-                tmp.Prezzo = item.Prezzo;
-                tmp.Sconto = item.Sconto;
-                if (item.Libreria != null)
-                {
-                    tmp.NomeLibreria = item.Libreria.NomeLibreria;
-                    tmp.Luogo = item.Libreria.Luogo;
-                }
-                tmp.Autori = new List<AnswerAutore>();
-                if (item.LibroAutores.Any())
-                {
-                    tmp.Autori = item.LibroAutores.Select(x => new AnswerAutore 
-                    {
-                        AutoreId = x.Autore.AutoreId,
-                        Nome = x.Autore.Nome,
-                        Cognome = x.Autore.Cognome
-                    }).ToList();
-                }
-                res.Add(tmp);
+                res.Add(MappaLibro(item));
             }
             return res;
+        }
+
+        public static AnswerLibro MappaLibro(Libro libro)
+        {
+            var tmp = new AnswerLibro();
+            tmp.LibroId = libro.LibroId;
+            tmp.Titolo = libro.Titolo;
+            tmp.AnnoPub = libro.AnnoPub;
+            tmp.Prezzo = libro.Prezzo;
+            tmp.Sconto = libro.Sconto;
+            if (libro.Libreria != null)
+            {
+                tmp.NomeLibreria = libro.Libreria.NomeLibreria;
+                tmp.Luogo = libro.Libreria.Luogo;
+            }
+            tmp.Autori = new List<AnswerAutore>();
+            if (libro.LibroAutores.Any())
+            {
+                tmp.Autori = libro.LibroAutores.Select(x => new AnswerAutore
+                {
+                    AutoreId = x.Autore.AutoreId,
+                    Nome = x.Autore.Nome,
+                    Cognome = x.Autore.Cognome
+                }).ToList();
+            }
+            return tmp;
         }
     }
 }

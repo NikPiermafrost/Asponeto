@@ -7,5 +7,6 @@ namespace Libreria.DataAccess.Services
     public interface ILibriService
     {
         Task<List<Libro>> GetLibri();
+        Task<Libro> GetLibro(int Id);
     }
 }

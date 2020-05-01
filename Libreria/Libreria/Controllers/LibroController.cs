@@ -35,10 +35,25 @@ namespace Libreria.Controllers
         }
 
         // GET: api/Libro/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            try
+            {
+                var toMap = await _libriService.GetLibro(id);
+                if (toMap == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(AnswerLibro.MappaLibro(toMap));
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, null);
+            }
         }
 
         // POST: api/Libro
