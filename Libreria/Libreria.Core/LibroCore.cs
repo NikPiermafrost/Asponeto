@@ -40,7 +40,7 @@ namespace Libreria.Core
                     return 0;
                 }
             }
-            return null;
+            return 0;
         }
     }
 }
