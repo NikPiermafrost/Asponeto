@@ -12,5 +12,7 @@ namespace Libreria.DataAccess.Services
         Task<Libreriaa> CheckLibreria(string Nome, string Luogo);
         Task<Autore> CheckAutore(string Nome, string Congome);
         Task<int> AddLibroToDb(Libro libro);
+        Task<bool> UpdateLibro(Libro libro);
+        Task<bool> DeleteLibro(int LibroId);
     }
 }

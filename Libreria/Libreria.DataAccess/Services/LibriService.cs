@@ -115,5 +115,71 @@ namespace Libreria.DataAccess.Services
                 return 0;
             }
         }
+
+        public async Task<bool> UpdateLibro(Libro libro)
+        {
+            try
+            {
+                var isMod = false;
+                var toMod = _libreriaContext.Libro.FirstOrDefault(x => x.LibroId == libro.LibroId);
+                if (toMod != null)
+                {
+                    if (toMod.Titolo != libro.Titolo)
+                    {
+                        toMod.Titolo = libro.Titolo;
+                        isMod = true;
+                    }
+                    if (toMod.LibreriaId != libro.LibreriaId)
+                    {
+                        toMod.LibreriaId = libro.LibreriaId;
+                        isMod = true;
+                    }
+                    if (toMod.AnnoPub != libro.AnnoPub)
+                    {
+                        toMod.LibreriaId = libro.LibreriaId;
+                        isMod = true;
+                    }
+                    if (toMod.Prezzo != libro.Prezzo)
+                    {
+                        toMod.Prezzo = libro.Prezzo;
+                        isMod = true;
+                    }
+                    if (toMod.Sconto != libro.Sconto)
+                    {
+                        toMod.Sconto = libro.Sconto;
+                        isMod = true;
+                    }
+                    if (isMod)
+                    {
+                        _libreriaContext.Update(toMod);
+                        await _libreriaContext.SaveChangesAsync();
+                    }
+                }
+                return isMod;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteLibro(int LibroId)
+        {
+            try
+            {
+                var toDel = _libreriaContext.Libro.Include(x => x.LibroAutores).FirstOrDefaultAsync(x => x.LibroId == LibroId);
+                if (toDel != null)
+                {
+                    _libreriaContext.Remove(toDel);
+                    await _libreriaContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
