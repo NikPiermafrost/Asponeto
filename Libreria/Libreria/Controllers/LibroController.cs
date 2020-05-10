@@ -24,6 +24,8 @@ namespace Libreria.Controllers
         }
         // GET: api/Libro
         [HttpGet]
+        [ProducesResponseType(typeof(List<AnswerLibro>), 200)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Get()
         {
             try
@@ -40,6 +42,9 @@ namespace Libreria.Controllers
 
         // GET: api/Libro/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(AnswerLibro), 200)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> Get(int id)
         {
             try
@@ -62,6 +67,9 @@ namespace Libreria.Controllers
 
         // POST: api/Libro
         [HttpPost]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Post([FromBody] RequestLibro value)
         {
             try
@@ -84,6 +92,9 @@ namespace Libreria.Controllers
 
         // PUT: api/Libro/5
         [HttpPut("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> Put(int id, [FromBody] Libro libro)
         {
             try
@@ -107,6 +118,9 @@ namespace Libreria.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> Delete(int id)
         {
             try
